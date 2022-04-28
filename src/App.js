@@ -5,6 +5,8 @@ import { v4 as uuid4 } from "uuid";
 import "./global.css";
 import { login, logout } from "./utils";
 
+import Layout from "./Layout";
+
 const GAS = 300000000000000;
 const ONE_NEAR = utils.format.parseNearAmount("1");
 
@@ -37,12 +39,9 @@ export default function App() {
 
   if (!window.walletConnection.isSignedIn()) {
     return (
-      <main>
+      <Layout buttonClick={login} isLoggedIn={false}>
         <h1>Alpha Pass Mint</h1>
-        <p style={{ textAlign: "center", marginTop: "2.5em" }}>
-          <button onClick={login}>Sign in</button>
-        </p>
-      </main>
+      </Layout>
     );
   }
 
@@ -86,50 +85,45 @@ export default function App() {
   };
 
   return (
-    <>
-      <button className="link" style={{ float: "right" }} onClick={logout}>
-        Sign out
-      </button>
-      <main>
-        <h1>{"Alpha Pass Mint"}</h1>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            maxWidth: "100%",
-          }}
-        >
-          {nfts.map((nft) => (
+    <Layout buttonClick={logout} isLoggedIn={true}>
+      <h1>{"Alpha Pass Mint"}</h1>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          maxWidth: "100%",
+        }}
+      >
+        {nfts.map((nft) => (
+          <div
+            key={nft.token_id}
+            style={{
+              marginRight: 5,
+              flexGrow: 1,
+              flexBasis: "50%",
+            }}
+          >
             <div
-              key={nft.token_id}
               style={{
-                marginRight: 5,
-                flexGrow: 1,
-                flexBasis: "50%",
+                display: "flex",
+                justifyContent: "center",
+                marginBottom: 10,
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginBottom: 10,
-                }}
-              >
-                {nft.metadata.title}
-              </div>
-              <img style={{ width: "100%" }} src={nft.metadata.media} />
+              {nft.metadata.title}
             </div>
-          ))}
-        </div>
+            <img style={{ width: "100%" }} src={nft.metadata.media} />
+          </div>
+        ))}
+      </div>
 
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <p style={{ textAlign: "center", marginTop: "2.5em" }}>
-            <button disabled={buttonDisabled} onClick={mint}>
-              Mint
-            </button>
-          </p>
-        </div>
-      </main>
-    </>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <p style={{ textAlign: "center", marginTop: "2.5em" }}>
+          <button disabled={buttonDisabled} onClick={mint}>
+            Mint
+          </button>
+        </p>
+      </div>
+    </Layout>
   );
 }
