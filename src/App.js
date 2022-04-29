@@ -6,6 +6,8 @@ import "./global.css";
 import { login, logout } from "./utils";
 
 import Layout from "./Layout";
+import Content from "./Content";
+import List from "./List";
 
 const GAS = 300000000000000;
 const ONE_NEAR = utils.format.parseNearAmount("1");
@@ -40,7 +42,7 @@ export default function App() {
   if (!window.walletConnection.isSignedIn()) {
     return (
       <Layout buttonClick={login} isLoggedIn={false}>
-        <h1>Alpha Pass Mint</h1>
+        <Content />
       </Layout>
     );
   }
@@ -86,44 +88,8 @@ export default function App() {
 
   return (
     <Layout buttonClick={logout} isLoggedIn={true}>
-      <h1>{"Alpha Pass Mint"}</h1>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          maxWidth: "100%",
-        }}
-      >
-        {nfts.map((nft) => (
-          <div
-            key={nft.token_id}
-            style={{
-              marginRight: 5,
-              flexGrow: 1,
-              flexBasis: "50%",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginBottom: 10,
-              }}
-            >
-              {nft.metadata.title}
-            </div>
-            <img style={{ width: "100%" }} src={nft.metadata.media} />
-          </div>
-        ))}
-      </div>
-
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <p style={{ textAlign: "center", marginTop: "2.5em" }}>
-          <button disabled={buttonDisabled} onClick={mint}>
-            Mint
-          </button>
-        </p>
-      </div>
+      <Content showMintBtn onMint={mint} />
+      <List nfts={nfts} />
     </Layout>
   );
 }

@@ -3,6 +3,10 @@
 }
 
 html {
+  height: 100%;
+}
+
+html {
   --bg: #efefef;
   --fg: #1e1e1e;
   --gray: #555;
@@ -22,11 +26,16 @@ html {
 body {
   margin: 0;
   padding: 0;
+  min-height: 100%;
+}
+
+body div {
+  /* height: inherit; */
 }
 
 main {
   margin: 0 auto;
-  max-width: 25em;
+  /* max-width: 25em; */
 }
 
 

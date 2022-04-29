@@ -12,6 +12,8 @@ import {
 import { useBooleanToggle } from "@mantine/hooks";
 import { ChevronDown } from "tabler-icons-react";
 
+import logo from "./assets/logo.png";
+
 const HEADER_HEIGHT = 60;
 
 const useStyles = createStyles((theme) => ({
@@ -65,9 +67,9 @@ export default function HeaderAction({ buttonClick, isLoggedIn }) {
   const [opened, toggleOpened] = useBooleanToggle(false);
 
   return (
-    <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }} mb={30} fixed>
+    <Header height={HEADER_HEIGHT} mb={30} fixed>
       <Container className={classes.inner} fluid>
-        Zoo NFT for Ukrain
+        <img src={logo} alt="logo" height={30} />
         <Group spacing={5} className={classes.links}>
           {/* {items} */}
         </Group>
