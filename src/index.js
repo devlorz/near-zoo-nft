@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { initContract } from "./utils";
-import { Button, Code, Title, MantineProvider } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 
 window.nearInitPromise = initContract()
   .then(() => {

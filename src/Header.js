@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  createStyles,
-  Menu,
-  Center,
-  Header,
-  Container,
-  Group,
-  Button,
-  Burger,
-} from "@mantine/core";
+import { createStyles, Header, Container, Group, Button } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
-import { ChevronDown } from "tabler-icons-react";
 
 import logo from "./assets/logo.png";
 
@@ -64,7 +54,6 @@ const useStyles = createStyles((theme) => ({
 
 export default function HeaderAction({ buttonClick, isLoggedIn }) {
   const { classes } = useStyles();
-  const [opened, toggleOpened] = useBooleanToggle(false);
 
   return (
     <Header height={HEADER_HEIGHT} mb={30} fixed>
